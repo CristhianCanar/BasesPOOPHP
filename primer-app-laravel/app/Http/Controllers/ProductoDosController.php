@@ -23,7 +23,7 @@ class ProductoDosController extends Controller
      */
     public function create()
     {
-        //
+        return view('productos.registro');
     }
 
     /**
@@ -31,7 +31,19 @@ class ProductoDosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = Producto::create([
+            'nombre' => $request->nombre,
+            'marca' => $request->marca,
+            'precio' => $request->precio,
+            'descripcion' => $request->descripcion
+        ]);
+
+        if(!$producto){
+            echo "Error al registrar producto :(";
+            return route('producto.create');
+        }
+        echo "Producto registrado con exito :)";
+        return $this->index();
     }
 
     /**

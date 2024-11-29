@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gestionar productos</title>
-</head>
-<body>
-    Listado de productos
-    {{ $productos }}
-    @foreach($productos as $producto)
-        <h1>{{ $producto->nombre }}</h1>
-        <h4>{{ $producto->marca }}</h4>
-    @endforeach
-</body>
-</html>
+@extends('layouts.app')
+@section('titulo', 'Gestionar productos')
+@section('contenido')
+    <h1>Gestionar los productos</h1>
+    <a href="{{ route('producto.create') }}">Registrar producto</a>
+    <table>
+        <thead>
+            <th>N°</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+@endsection
