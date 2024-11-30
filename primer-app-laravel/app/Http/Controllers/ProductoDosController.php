@@ -59,7 +59,9 @@ class ProductoDosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $producto = Producto::where('id', $id)->first();
+        return view('productos.editar',
+        compact('producto'));
     }
 
     /**
@@ -67,7 +69,19 @@ class ProductoDosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $producto = Producto::where('id', $id)->update([
+            'nombre' => $request->nombre,
+            'marca' => $request->marca,
+            'precio' => $request->precio,
+            'descripcion' => $request->descripcion
+        ]);
+
+        if(!$producto){
+            echo "Producto no actualizado :(";
+            return $this->index();
+        }
+        echo "Producto actualizado con éxito :)";
+        return $this->index();
     }
 
     /**
@@ -75,6 +89,12 @@ class ProductoDosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $producto = Producto::where('id', $id)->delete();
+        if(!$producto){
+            echo "Error al eliminar el producto :(";
+            return $this->index();
+        }
+        echo "Producto eliminado con éxito :)";
+        return $this->index();
     }
 }
